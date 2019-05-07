@@ -207,7 +207,10 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+  int flag = (!!x)<<31>>31;
+  y = y&flag;
+  z = z&(~flag);
+  return y|z;
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
@@ -217,7 +220,9 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+  int neg_y = (~y)+1;
+  int res = x+neg_y;
+  return !res|!!(res>>31);
 }
 //4
 /* 
